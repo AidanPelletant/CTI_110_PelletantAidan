@@ -1,48 +1,39 @@
+# CTI-110
+# P4LAB2 - Multiplication Table
 # Aidan Pelletant
-# November 1, 2026
-# P4LAB2
-# Description: This program asks the user for an integer, checks if it is 
-#              negative or positive/zero, displays a multiplication table 
-#              from 1 to 12 using a for loop if valid, and uses a while loop 
-#              to repeat the program based on user input.
-#
+# November 4, 2026
+# Description: This program uses a while loop and a for loop together to print 
+# multiplication tables for positive integers, handles negative inputs, and 
+# allows the user to repeat the program until they type 'no'.
+
 # Pseudocode:
-# 1. Initialize a control variable (run_program = "yes") to start the while loop.
-# 2. WHILE run_program equals "yes":
-#    a. Prompt the user to enter an integer.
-#    b. IF the integer is greater than or equal to 0:
-#       - Use a FOR loop from 1 to 12 to calculate and display the multiplication product.
-#    c. ELSE (if the integer is less than 0):
-#       - Display an error message stating negative numbers are not accepted.
-#    d. Ask the user if they want to run the program again ("yes" or "no").
-#    e. Update the control variable with the user's response.
-# 3. END program when the user types "no".
+# 1. Initialize run_again variable to "yes" to start the while loop.
+# 2. Start a while loop that runs as long as run_again does not equal "no".
+# 3. Prompt the user to enter an integer.
+# 4. If the integer is >= 0, use a for loop with range(1, 13) to print the multiplication table.
+# 5. If the integer is negative (< 0), display an error message.
+# 6. Ask the user if they would like to run the program again and update run_again.
+# 7. Print an ending message once the loop breaks.
 
-def main():
-    # While loop to control repeating the program
-    run_program = "yes"
+# Initialize run_again variable to start the loop
+run_again = "yes"
+
+# While loop to control whether the program runs again
+while run_again != "no":
     
-    while run_program == "yes":
-        # Input step
-        user_num = int(input("Enter an integer: "))
+    # Get an integer from the user
+    user_num = int(input("Enter an integer: "))
+    
+    # Determine if the integer is positive or negative
+    if user_num >= 0:
+        # Display multiplication table for that value from 1 to 12
+        for item in range(1, 13):
+            print(f"{user_num} * {item} = {user_num * item}")
+    else:
+        print("This program does not handle negative values.")
         
-        # Decision for positive vs. negative integer
-        if user_num >= 0:
-            # Multiplication table logic using a for loop (1 to 12)
-            print(f"\nMultiplication table for {user_num}:")
-            for i in range(1, 13):
-                product = user_num * i
-                print(f"{user_num} * {i} = {product}")
-        else:
-            # Error message for negative values
-            print("\nError: You entered a negative integer. Negative values are not accepted.")
-            
-        # Repeat/run-again logic
-        print("-" * 30)
-        run_program = input("Would you like to run the program again? (yes/no): ").strip().lower()
-        print("-" * 30)
+    # Ask user if they wish to run the program again
+    run_again = input("Would you like to run the program again? ")
 
-    print("Exiting program. Goodbye!")
-
-if __name__ == "__main__":
-    main()
+# The loop has broken (user entered 'no')
+print("Program is ending")
