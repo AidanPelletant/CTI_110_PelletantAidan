@@ -1,59 +1,48 @@
-# -----------------------------------------------------------------------------
-# Name: P4LAB1_PelletantAidan
-# Description: This program uses Python's turtle graphics library, incorporating 
-#              both a for loop and a while loop to draw a house (square base and 
-#              triangle roof) filled with green.
+# CTI-110
+# P4LAB1 - House Drawing
+# Aidan Pelletant
+# November 4, 2026
 #
 # Pseudocode:
-# 1. Import the turtle module.
-# 2. Set up the screen and turtle properties.
-# 3. Use a FOR loop to draw and fill the square base.
-# 4. Lift the pen, move precisely to the top-left corner, and put the pen down.
-# 5. Use a WHILE loop to draw and fill the triangle roof so it aligns with the square.
-# 6. Hide the turtle and keep the graphics window open until clicked.
-# -----------------------------------------------------------------------------
+# 1. Import  turtle.
+# 2. Create the screen/window and the turtle pen object.
+# 3. Set custom background color, pen size, color, and shape.
+# 4. Use a FOR loop to draw the 4 sides of the square base.
+# 5. Lift the pen, move the turtle to the top of the square, and put the pen down.
+# 6. Use a WHILE loop to draw the 3 sides of the triangle roof.
+# 7. Keep the drawing window open using win.mainloop().
 
 import turtle
 
-def draw_house():
-    # Set up screen
-    screen = turtle.Screen()
-    screen.bgcolor("white")
-    
-    t = turtle.Turtle()
-    t.color("black", "green")  # Outline in black, fill with green
-    t.pensize(2)
-    t.speed(3)
-    
-    # 1. Draw and fill the square base using a FOR loop
-    t.begin_fill()
-    for _ in range(4):
-        t.forward(100)
-        t.right(90)
-    t.end_fill()
-        
-    # 2. Position the turtle for the roof without drawing lines
-    t.penup()
-    t.goto(0, -100)          # Go back to the starting bottom-left corner
-    t.setheading(90)      # Face North (up)
-    t.forward(100)        # Move straight up the left wall to the top-left corner
-    t.setheading(0)       # Face East (right) to align with the top edge
-    t.pendown()
+# Create the turtle window and drawing object
+win = turtle.Screen()
+win.bgcolor("lightblue")
 
-    # 3. Draw and fill the triangle roof using a WHILE loop
-    t.begin_fill()
-    sides_drawn = 0
-    while sides_drawn < 3:
-        t.forward(100)
-        t.left(120)       # 120-degree turn for equilateral triangle vertices
-        sides_drawn += 1
-    t.end_fill()
+pen = turtle.Turtle()
+pen.pensize(5)
+pen.pencolor("purple")
+pen.shape("arrow")
 
-    # Hide the turtle when finished
-    t.hideturtle()
-    
-    # Keep the window open until clicked
-    turtle.done()
+# 1. Draw the Square Base using a FOR loop
+for side in range(4):
+    pen.forward(100)
+    pen.left(90)
 
-if __name__ == "__main__":
-    draw_house()
+# Move the turtle into position for the roof (top of the square)
+pen.penup()
+pen.goto(0, 100)
+pen.setheading(0)
+pen.pendown()
+
+# 2. Draw the Triangle Roof using a WHILE loop
+sides = 3
+while sides > 0:
+    pen.forward(100)
+    pen.left(120)
+    sides = sides - 1
+
+# Hide the turtle when done drawing
+pen.hideturtle()
+
+# Wait for user to close window
+win.mainloop()
